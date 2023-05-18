@@ -6,6 +6,7 @@ import 'package:star_notes/controllers/week_page_controller.dart';
 
 import '../../../models/task_model.dart';
 import '../../../styles.dart';
+import 'new_task_alert_widget.dart';
 
 class PeriodTasksWidget extends StatefulWidget {
   String period;
@@ -108,10 +109,20 @@ class _PeriodTasksWidgetState extends State<PeriodTasksWidget> {
           (widget.tasksList.length != 0)
               ? const SizedBox(height: 15)
               : const SizedBox(height: 0),
+          //Botão para adicionar nova tarefa
           Padding(
             padding: const EdgeInsets.only(bottom: 10, left: 26),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                //Chama o alertDialog para o usuário digitar a nova tarefa
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return NewTaskAlert();
+                  },
+                );
+              },
+              //Estilo do botão para nova tarefa
               child: Row(
                 children: [
                   Text(
