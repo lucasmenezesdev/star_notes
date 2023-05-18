@@ -59,6 +59,7 @@ class _PeriodTasksWidgetState extends State<PeriodTasksWidget> {
                 itemBuilder: (context, index) {
                   return ItemPeriodTaskWidget(
                     task: _controller.getTaskList(widget.period)[index],
+                    period: widget.period,
                   );
                 },
               ),

@@ -8,9 +8,11 @@ import '../../../styles.dart';
 import 'modal_task_info.dart';
 
 class ItemPeriodTaskWidget extends StatelessWidget {
+  String period;
   TaskModel task;
   ItemPeriodTaskWidget({
     Key? key,
+    required this.period,
     required this.task,
   }) : super(key: key);
 
@@ -18,7 +20,7 @@ class ItemPeriodTaskWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => GestureDetector(
-        onTap: () => showModalTaskInfo(context, task),
+        onTap: () => showModalTaskInfo(context, task, period),
         child: Container(
           padding: const EdgeInsets.only(left: 23),
           height: 40,

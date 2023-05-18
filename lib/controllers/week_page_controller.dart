@@ -86,9 +86,15 @@ class WeekPageController extends GetxController {
     return mapWeekTasks[selectedDay.value]![period]!;
   }
 
+  void removeListTask(TaskModel task, String period) {
+    mapWeekTasks[selectedDay.value]![period]!.remove(task);
+    print(mapWeekTasks[selectedDay.value]![period]!);
+  }
+
   void addNewTask(String task, String period) {
     RxString newTask = ''.obs;
     newTask.value = task;
+
     mapWeekTasks[selectedDay.value]![period]!.add(TaskModel(
       description: newTask,
     ));
