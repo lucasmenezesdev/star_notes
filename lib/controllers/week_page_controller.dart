@@ -44,46 +44,54 @@ class WeekPageController extends GetxController {
 
   List<String> daysList = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
 
-  RxMap<int, Map<String, List<TaskModel>>> mapWeekTasks =
-      RxMap<int, Map<String, List<TaskModel>>>({
+  Map<int, Map<String, RxList<TaskModel>>> mapWeekTasks = {
     0: {
-      'manha': [],
-      'tarde': [],
-      'noite': [],
+      'Manhã': RxList<TaskModel>([]),
+      'Tarde': RxList<TaskModel>([]),
+      'Noite': RxList<TaskModel>([]),
     },
     1: {
-      'manha': [],
-      'tarde': [],
-      'noite': [],
+      'Manhã': RxList<TaskModel>([]),
+      'Tarde': RxList<TaskModel>([]),
+      'Noite': RxList<TaskModel>([]),
     },
     2: {
-      'manha': [],
-      'tarde': [],
-      'noite': [],
+      'Manhã': RxList<TaskModel>([]),
+      'Tarde': RxList<TaskModel>([]),
+      'Noite': RxList<TaskModel>([]),
     },
     3: {
-      'manha': [],
-      'tarde': [],
-      'noite': [],
+      'Manhã': RxList<TaskModel>([]),
+      'Tarde': RxList<TaskModel>([]),
+      'Noite': RxList<TaskModel>([]),
     },
     4: {
-      'manha': [],
-      'tarde': [],
-      'noite': [],
+      'Manhã': RxList<TaskModel>([]),
+      'Tarde': RxList<TaskModel>([]),
+      'Noite': RxList<TaskModel>([]),
     },
     5: {
-      'manha': [],
-      'tarde': [],
-      'noite': [],
+      'Manhã': RxList<TaskModel>([]),
+      'Tarde': RxList<TaskModel>([]),
+      'Noite': RxList<TaskModel>([]),
     },
     6: {
-      'manha': [],
-      'tarde': [],
-      'noite': [],
+      'Manhã': RxList<TaskModel>([]),
+      'Tarde': RxList<TaskModel>([]),
+      'Noite': RxList<TaskModel>([]),
     },
-  });
+  };
 
-  List<TaskModel> manha = [];
-  List<TaskModel> tarde = [];
-  List<TaskModel> noite = [];
+  List<TaskModel> getTaskList(String period) {
+    return mapWeekTasks[selectedDay.value]![period]!;
+  }
+
+  void addNewTask(String task, String period) {
+    RxString newTask = ''.obs;
+    newTask.value = task;
+    mapWeekTasks[selectedDay.value]![period]!.add(TaskModel(
+      description: newTask,
+    ));
+    update();
+  }
 }

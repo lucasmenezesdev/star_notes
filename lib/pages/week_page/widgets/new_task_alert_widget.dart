@@ -1,22 +1,46 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:star_notes/controllers/week_page_controller.dart';
 
+import '../../../models/task_model.dart';
 import '../../../styles.dart';
 
-class NewTaskAlert extends StatelessWidget {
-  const NewTaskAlert({super.key});
+class NewTaskAlert extends StatefulWidget {
+  String period;
+
+  NewTaskAlert({
+    Key? key,
+    required this.period,
+  }) : super(key: key);
 
   @override
+  State<NewTaskAlert> createState() => _NewTaskAlertState();
+}
+
+class _NewTaskAlertState extends State<NewTaskAlert> {
+  final _controller = Get.find<WeekPageController>();
+  @override
   Widget build(BuildContext context) {
+    TextEditingController textController = TextEditingController();
+
     return AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
         side: BorderSide(color: lightPurple),
       ),
       backgroundColor: black,
-      title: Text('Adicionar Nova Tarefa',
-          style: GoogleFonts.poppins(color: orange, fontSize: 16)),
+      title: Center(
+        child: Text(
+          'Adicionar Nova Tarefa',
+          style: GoogleFonts.poppins(
+              color: white, fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+      ),
       content: TextField(
+        controller: textController,
+        style: GoogleFonts.poppins(color: white),
         cursorColor: white,
         decoration: InputDecoration(
           enabledBorder: UnderlineInputBorder(
@@ -29,24 +53,29 @@ class NewTaskAlert extends StatelessWidget {
               color: white, // Cor desejada para a linha de baixo
             ),
           ),
-          hintStyle: TextStyle(
-            color: orange, // Cor desejada para o hintText
-          ),
+          labelStyle: GoogleFonts.poppins(color: white, fontSize: 14),
+          hintStyle: GoogleFonts.poppins(color: white, fontSize: 14),
           hintText: 'Ex.: Enviar documentos',
         ),
       ),
+      actionsAlignment: MainAxisAlignment.center,
       actions: [
-        TextButton(
-          child: Text(
-            'Cancelar',
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(30), // Define o raio do border
+            ),
+            backgroundColor: orange,
           ),
+          child: Text('Adicionar',
+              style: GoogleFonts.poppins(color: white, fontSize: 16)),
           onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        TextButton(
-          child: Text('Adicionar'),
-          onPressed: () {
+            if (textController.text.isNotEmpty) {
+              setState(() {
+                _controller.addNewTask(textController.text, widget.period);
+              });
+            }
             // Lógica para adicionar a tarefa
             Navigator.of(context).pop();
           },

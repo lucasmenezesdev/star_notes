@@ -139,24 +139,18 @@ class _WeekPageState extends State<WeekPage> {
                   children: [
                     PeriodTasksWidget(
                       period: 'Manhã',
-                      tasksList: _controller.mapWeekTasks
-                          .value[_controller.selectedDay.value]!['manha']!,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     PeriodTasksWidget(
                       period: 'Tarde',
-                      tasksList: _controller.mapWeekTasks
-                          .value[_controller.selectedDay.value]!['tarde']!,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     PeriodTasksWidget(
                       period: 'Noite',
-                      tasksList: _controller.mapWeekTasks
-                          .value[_controller.selectedDay.value]!['noite']!,
                     ),
                   ],
                 ),
