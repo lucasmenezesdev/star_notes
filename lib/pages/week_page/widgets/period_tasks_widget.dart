@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,7 +25,7 @@ class _PeriodTasksWidgetState extends State<PeriodTasksWidget> {
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        height: 111 +
+        height: 112 +
             (40 * _controller.getTaskList(widget.period).length).toDouble(),
         decoration: BoxDecoration(
             color: grey.withOpacity(0.3),

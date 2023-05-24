@@ -108,7 +108,8 @@ void showModalTaskInfo(BuildContext context, TaskModel task, String period) {
                       ),
                       onPressed: () {
                         if (textController.text != task.description) {
-                          task.description.value = textController.text;
+                          _controller.updateDescription(
+                              task, textController.text);
                         }
                       },
                       child: Text(

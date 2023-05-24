@@ -1,3 +1,4 @@
+import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
 import 'package:star_notes/config.dart';
 import 'package:star_notes/styles.dart';
@@ -15,14 +16,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      color: black,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
-      home: const Layout(),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        bool isMobile = constraints.maxWidth < 600;
+
+        return isMobile
+            ? MaterialApp(
+                debugShowCheckedModeBanner: false,
+                color: black,
+                title: 'Star Notes',
+                theme: ThemeData(
+                  primarySwatch: Colors.grey,
+                ),
+                home: const Layout(),
+              )
+            : fluent.FluentApp(
+                debugShowCheckedModeBanner: false,
+                color: black,
+                title: 'Star Notes',
+                home: const Layout(),
+              );
+      },
     );
   }
 }

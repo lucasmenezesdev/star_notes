@@ -7,5 +7,17 @@ class TaskModel extends GetxController {
 
   TaskModel({
     required this.description,
+    required this.completed,
   });
+
+  Map<String, dynamic> toMap() {
+    return {'description': description.value, 'completed': completed.value};
+  }
+
+  factory TaskModel.fromMap(Map<String, dynamic> map) {
+    return TaskModel(
+      description: RxString(map['description']),
+      completed: RxBool(map['completed']),
+    );
+  }
 }

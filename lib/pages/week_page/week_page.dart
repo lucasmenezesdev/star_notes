@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:star_notes/pages/week_page/widgets/modal_config_widget.dart';
 import 'package:star_notes/pages/week_page/widgets/period_tasks_widget.dart';
 
 import '../../controllers/week_page_controller.dart';
@@ -25,7 +26,7 @@ class _WeekPageState extends State<WeekPage> {
         //Setando a imagem de fundo
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/bg1.png'), fit: BoxFit.cover)),
+                image: AssetImage('assets/images/0.png'), fit: BoxFit.cover)),
         child: Padding(
           padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top + 20,
@@ -69,12 +70,18 @@ class _WeekPageState extends State<WeekPage> {
                           ),
                         ),
                   Expanded(child: Container()),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30), color: black),
-                    height: 45,
-                    width: 45,
-                    child: Image.asset('assets/icons/stars.png'),
+                  GestureDetector(
+                    onTap: () {
+                      showModalConfig(context);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: black),
+                      height: 45,
+                      width: 45,
+                      child: Image.asset('assets/icons/stars.png'),
+                    ),
                   ),
                 ],
               ),

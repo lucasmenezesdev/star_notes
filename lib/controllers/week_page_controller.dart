@@ -1,15 +1,22 @@
 import 'package:get/get.dart';
+import 'package:star_notes/repositories/week_tasks_repository.dart';
 
 import '../models/task_model.dart';
 
 class WeekPageController extends GetxController {
+  final weekTasksRepository = Get.find<WeekTasksRepository>();
+
   bool isAuth = false;
   RxInt selectedDay = 0.obs;
+
+  RxInt currentImage = 0.obs;
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     selectedDay.value = currentDay();
+    weekTasksRepository.loadTaskLists();
   }
 
   int currentDay() {
@@ -44,60 +51,34 @@ class WeekPageController extends GetxController {
 
   List<String> daysList = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
 
-  Map<int, Map<String, RxList<TaskModel>>> mapWeekTasks = {
-    0: {
-      'Manhã': RxList<TaskModel>([]),
-      'Tarde': RxList<TaskModel>([]),
-      'Noite': RxList<TaskModel>([]),
-    },
-    1: {
-      'Manhã': RxList<TaskModel>([]),
-      'Tarde': RxList<TaskModel>([]),
-      'Noite': RxList<TaskModel>([]),
-    },
-    2: {
-      'Manhã': RxList<TaskModel>([]),
-      'Tarde': RxList<TaskModel>([]),
-      'Noite': RxList<TaskModel>([]),
-    },
-    3: {
-      'Manhã': RxList<TaskModel>([]),
-      'Tarde': RxList<TaskModel>([]),
-      'Noite': RxList<TaskModel>([]),
-    },
-    4: {
-      'Manhã': RxList<TaskModel>([]),
-      'Tarde': RxList<TaskModel>([]),
-      'Noite': RxList<TaskModel>([]),
-    },
-    5: {
-      'Manhã': RxList<TaskModel>([]),
-      'Tarde': RxList<TaskModel>([]),
-      'Noite': RxList<TaskModel>([]),
-    },
-    6: {
-      'Manhã': RxList<TaskModel>([]),
-      'Tarde': RxList<TaskModel>([]),
-      'Noite': RxList<TaskModel>([]),
-    },
-  };
-
   List<TaskModel> getTaskList(String period) {
-    return mapWeekTasks[selectedDay.value]![period]!;
+    return weekTasksRepository.mapWeekTasks[selectedDay.value]![period]!;
   }
 
   void removeListTask(TaskModel task, String period) {
-    mapWeekTasks[selectedDay.value]![period]!.remove(task);
-    print(mapWeekTasks[selectedDay.value]![period]!);
+    weekTasksRepository.mapWeekTasks[selectedDay.value]![period]!.remove(task);
+    weekTasksRepository.saveTaskLists();
   }
 
   void addNewTask(String task, String period) {
-    RxString newTask = ''.obs;
-    newTask.value = task;
+    RxString newDescription = task.obs;
+    RxBool newBool = false.obs;
 
-    mapWeekTasks[selectedDay.value]![period]!.add(TaskModel(
-      description: newTask,
+    weekTasksRepository.mapWeekTasks[selectedDay.value]![period]!.add(TaskModel(
+      description: newDescription,
+      completed: newBool,
     ));
+    weekTasksRepository.saveTaskLists();
     update();
+  }
+
+  void updateDescription(TaskModel task, String newDescription) {
+    task.description.value = newDescription;
+    weekTasksRepository.saveTaskLists();
+  }
+
+  void updateCompleted(TaskModel task) {
+    task.completed.value = !task.completed.value;
+    weekTasksRepository.saveTaskLists();
   }
 }

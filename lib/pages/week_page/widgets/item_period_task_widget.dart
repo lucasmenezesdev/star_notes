@@ -2,10 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:star_notes/controllers/week_page_controller.dart';
 
 import '../../../models/task_model.dart';
 import '../../../styles.dart';
-import 'modal_task_info.dart';
+import 'modal_task_info_widget.dart';
 
 class ItemPeriodTaskWidget extends StatelessWidget {
   String period;
@@ -18,6 +19,8 @@ class ItemPeriodTaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.find<WeekPageController>();
+
     return Obx(
       () => GestureDetector(
         onTap: () => showModalTaskInfo(context, task, period),
@@ -31,7 +34,7 @@ class ItemPeriodTaskWidget extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       setState(() {
-                        task.completed.value = !task.completed.value;
+                        _controller.updateCompleted(task);
                       });
                     },
                     child: Container(
