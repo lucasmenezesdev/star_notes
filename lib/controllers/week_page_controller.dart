@@ -1,10 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:star_notes/repositories/week_tasks_repository.dart';
 
 import '../models/task_model.dart';
 
 class WeekPageController extends GetxController {
   final weekTasksRepository = Get.find<WeekTasksRepository>();
+  final ScrollController scrollController = ScrollController();
 
   bool isAuth = false;
   RxInt selectedDay = 0.obs;
@@ -17,6 +20,7 @@ class WeekPageController extends GetxController {
     super.onInit();
     selectedDay.value = currentDay();
     weekTasksRepository.loadTaskLists();
+    loadImage();
   }
 
   int currentDay() {
@@ -80,5 +84,19 @@ class WeekPageController extends GetxController {
   void updateCompleted(TaskModel task) {
     task.completed.value = !task.completed.value;
     weekTasksRepository.saveTaskLists();
+  }
+
+  void saveImage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('imageWeek', currentImage.value.toString());
+  }
+
+  void loadImage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? image = prefs.getString('imageWeek');
+    if (image != null) {
+      currentImage.value = int.parse(image);
+    }
   }
 }

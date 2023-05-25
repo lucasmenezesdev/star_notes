@@ -69,39 +69,42 @@ class _PeriodTasksWidgetState extends State<PeriodTasksWidget> {
             //Botão para adicionar nova tarefa
             Padding(
               padding: const EdgeInsets.only(bottom: 10, left: 26),
-              child: GestureDetector(
-                onTap: () {
-                  //Chama o alertDialog para o usuário digitar a nova tarefa
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return NewTaskAlert(
-                        period: widget.period,
-                      );
-                    },
-                  );
-                },
-                //Estilo do botão para nova tarefa
-                child: Row(
-                  children: [
-                    Text(
-                      '+',
-                      style: GoogleFonts.poppins(
-                        fontSize: 25,
-                        color: white,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () {
+                    //Chama o alertDialog para o usuário digitar a nova tarefa
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return NewTaskAlert(
+                          period: widget.period,
+                        );
+                      },
+                    );
+                  },
+                  //Estilo do botão para nova tarefa
+                  child: Row(
+                    children: [
+                      Text(
+                        '+',
+                        style: GoogleFonts.poppins(
+                          fontSize: 25,
+                          color: white,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      'Nova tarefa',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        color: white,
+                      const SizedBox(
+                        width: 15,
                       ),
-                    ),
-                  ],
+                      Text(
+                        'Nova tarefa',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: white,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
