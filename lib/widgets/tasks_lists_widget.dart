@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:star_notes/pages/tasks_page.dart';
 
 import '../controllers/lists_page_controller.dart';
 import 'list_button_widget.dart';
@@ -18,7 +19,7 @@ Widget tasksListsWidget() {
               controller: _scrollController,
               child: ListView.separated(
                 controller: _scrollController,
-                padding: EdgeInsets.zero,
+                padding: EdgeInsets.only(bottom: 80),
                 itemCount: _controller.getTasksLists().length,
                 itemBuilder: (context, index) {
                   List<String> listKeys =
@@ -27,7 +28,20 @@ Widget tasksListsWidget() {
                   dynamic currentTask =
                       _controller.getTasksLists()[listKeys[index]];
 
-                  return listButton(null, listKeys[index], () {});
+                  return Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: listButton(
+                      null,
+                      listKeys[index],
+                      () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              TasksPage(listName: listKeys[index]),
+                        ),
+                      ),
+                    ),
+                  );
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(

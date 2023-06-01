@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:star_notes/controllers/week_page_controller.dart';
-import 'package:star_notes/pages/week_page/widgets/item_period_task_widget.dart';
+import 'package:star_notes/widgets/item_task_widget.dart';
 
 import '../../../models/task_model.dart';
 import '../../../styles.dart';
@@ -56,10 +56,11 @@ class _PeriodTasksWidgetState extends State<PeriodTasksWidget> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: _controller.getTaskList(widget.period).length,
                 itemBuilder: (context, index) {
-                  return ItemPeriodTaskWidget(
-                    task: _controller.getTaskList(widget.period)[index],
-                    period: widget.period,
-                  );
+                  return itemTaskWidget(
+                      widget.period,
+                      _controller.getTaskList(widget.period)[index],
+                      context,
+                      _controller);
                 },
               ),
             ),

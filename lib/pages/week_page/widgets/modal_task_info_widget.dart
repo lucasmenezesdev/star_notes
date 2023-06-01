@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:star_notes/controllers/lists_page_controller.dart';
 import 'package:star_notes/controllers/week_page_controller.dart';
 
 import '../../../models/task_model.dart';
 import '../../../styles.dart';
 
-void showModalTaskInfo(BuildContext context, TaskModel task, String period) {
-  final _controller = Get.find<WeekPageController>();
-
+void showModalTaskInfo(
+    BuildContext context, TaskModel task, String periodOrList, controller) {
   TextEditingController textController = TextEditingController();
   textController.text = task.description.value;
   showModalBottomSheet(
@@ -72,25 +72,28 @@ void showModalTaskInfo(BuildContext context, TaskModel task, String period) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      try {
-                        _controller.removeListTask(task, period);
-                        Navigator.pop(context);
-                      } catch (e) {
-                        print(e);
-                      }
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: salmon,
-                      ),
-                      child: Icon(
-                        Icons.delete,
-                        color: white,
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                        try {
+                          controller.removeListTask(task, periodOrList);
+                          Navigator.pop(context);
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.redAccent,
+                        ),
+                        child: Icon(
+                          Icons.delete,
+                          color: white,
+                        ),
                       ),
                     ),
                   ),
@@ -108,7 +111,7 @@ void showModalTaskInfo(BuildContext context, TaskModel task, String period) {
                       ),
                       onPressed: () {
                         if (textController.text != task.description) {
-                          _controller.updateDescription(
+                          controller.updateDescription(
                               task, textController.text);
                         }
                       },

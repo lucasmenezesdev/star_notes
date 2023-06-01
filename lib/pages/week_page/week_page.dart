@@ -39,42 +39,42 @@ class _WeekPageState extends State<WeekPage> {
               children: [
                 Row(
                   children: [
-                    _controller.isAuth
-                        ? Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: black),
-                                height: 45,
-                                width: 45,
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Text(
-                                'Lucas Menezes',
-                                style: TextStyle(color: white),
-                              ),
-                            ],
-                          )
-                        : MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              child: Container(
-                                alignment: Alignment.center,
-                                height: 40,
-                                width: 105,
-                                decoration: BoxDecoration(
-                                    color: black,
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: Text(
-                                  'Conectar-se',
-                                  style: TextStyle(color: white),
-                                ),
-                              ),
-                            ),
-                          ),
+                    // _controller.isAuth
+                    //     ? Row(
+                    //         children: [
+                    //           Container(
+                    //             decoration: BoxDecoration(
+                    //                 borderRadius: BorderRadius.circular(30),
+                    //                 color: black),
+                    //             height: 45,
+                    //             width: 45,
+                    //           ),
+                    //           const SizedBox(
+                    //             width: 15,
+                    //           ),
+                    //           Text(
+                    //             'Lucas Menezes',
+                    //             style: TextStyle(color: white),
+                    //           ),
+                    //         ],
+                    //       )
+                    //     : MouseRegion(
+                    //         cursor: SystemMouseCursors.click,
+                    //         child: GestureDetector(
+                    //           child: Container(
+                    //             alignment: Alignment.center,
+                    //             height: 40,
+                    //             width: 105,
+                    //             decoration: BoxDecoration(
+                    //                 color: black,
+                    //                 borderRadius: BorderRadius.circular(30)),
+                    //             child: Text(
+                    //               'Conectar-se',
+                    //               style: TextStyle(color: white),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
                     Expanded(child: Container()),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,

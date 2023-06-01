@@ -70,12 +70,19 @@ class _NewListAlertWidgetState extends State<NewListAlertWidget> {
               style: GoogleFonts.poppins(color: white, fontSize: 16)),
           onPressed: () {
             if (textController.text.isNotEmpty) {
-              setState(() {
-                _controller.addNewList(textController.text);
-              });
+              if (_controller
+                  .getTasksLists()
+                  .keys
+                  .contains(textController.text)) {
+                Get.snackbar('Lista repetida', 'Tente novamente com outro nome',
+                    colorText: white);
+              } else {
+                setState(() {
+                  _controller.addNewList(textController.text);
+                });
+                Navigator.of(context).pop();
+              }
             }
-            // Lógica para adicionar a tarefa
-            Navigator.of(context).pop();
           },
         ),
       ],

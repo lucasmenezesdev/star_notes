@@ -5,6 +5,40 @@ import 'dart:convert';
 import '../models/task_model.dart';
 
 class WeekTasksRepository extends GetxController {
+  void resetWeek() {
+    mapWeekTasks[0]?['Manhã']?.clear();
+    mapWeekTasks[0]?['Tarde']?.clear();
+    mapWeekTasks[0]?['Noite']?.clear();
+
+    mapWeekTasks[1]?['Manhã']?.clear();
+    mapWeekTasks[1]?['Tarde']?.clear();
+    mapWeekTasks[1]?['Noite']?.clear();
+
+    mapWeekTasks[2]?['Manhã']?.clear();
+    mapWeekTasks[2]?['Tarde']?.clear();
+    mapWeekTasks[2]?['Noite']?.clear();
+
+    mapWeekTasks[3]?['Manhã']?.clear();
+    mapWeekTasks[3]?['Tarde']?.clear();
+    mapWeekTasks[3]?['Noite']?.clear();
+
+    mapWeekTasks[4]?['Manhã']?.clear();
+    mapWeekTasks[4]?['Tarde']?.clear();
+    mapWeekTasks[4]?['Noite']?.clear();
+
+    mapWeekTasks[5]?['Manhã']?.clear();
+    mapWeekTasks[5]?['Tarde']?.clear();
+    mapWeekTasks[5]?['Noite']?.clear();
+
+    mapWeekTasks[6]?['Manhã']?.clear();
+    mapWeekTasks[6]?['Tarde']?.clear();
+    mapWeekTasks[6]?['Noite']?.clear();
+
+    saveTaskLists();
+
+    update();
+  }
+
   Map<int, Map<String, RxList<TaskModel>>> mapWeekTasks = {
     0: {
       'Manhã': RxList<TaskModel>([]),

@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../styles.dart';
 
-Widget listButton(String? pathIcon, String text, Function onTap) {
+Widget listButton(String? pathIcon, String text, onTap) {
   return MouseRegion(
     cursor: SystemMouseCursors.click,
     child: GestureDetector(
-      onTap: () => onTap,
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         height: 50,
@@ -29,9 +29,12 @@ Widget listButton(String? pathIcon, String text, Function onTap) {
                     ],
                   )
                 : SizedBox(),
-            Text(
-              text,
-              style: GoogleFonts.poppins(fontSize: 12, color: white),
+            Expanded(
+              child: Text(
+                text,
+                style: GoogleFonts.poppins(fontSize: 12, color: white),
+                overflow: TextOverflow.ellipsis,
+              ),
             )
           ],
         ),

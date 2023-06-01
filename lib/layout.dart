@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:star_notes/pages/default_tasks_page%20.dart';
 import 'package:star_notes/pages/lists_page/lists_page.dart';
 import 'package:star_notes/pages/lists_page/widgets/new_list_alert_widget.dart';
 import 'package:star_notes/pages/week_page/week_page.dart';
 import 'package:star_notes/styles.dart';
 import 'package:star_notes/widgets/list_button_widget.dart';
 import 'package:star_notes/widgets/tasks_lists_widget.dart';
+
+import 'controllers/lists_page_controller.dart';
 
 class Layout extends StatefulWidget {
   const Layout({super.key});
@@ -16,6 +20,7 @@ class Layout extends StatefulWidget {
 
 class _LayoutState extends State<Layout> {
   final PageController _pageController = PageController();
+  final _controller = Get.find<ListsPageController>();
 
   int itemIndex = 0;
 
@@ -72,7 +77,6 @@ class _LayoutState extends State<Layout> {
                 body: Row(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(15),
                       color: black,
                       height: MediaQuery.of(context).size.height,
                       width: 250,
@@ -127,29 +131,76 @@ class _LayoutState extends State<Layout> {
                           // SizedBox(
                           //   height: 30,
                           // ),
-                          listButton('assets/icons/week.png',
-                              'Organização semanal', () {}),
+                          // Container(
+                          //   padding: EdgeInsets.symmetric(horizontal: 15),
+                          //   child: listButton('assets/icons/week.png',
+                          //       'Organização semanal', () {}),
+                          // ),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          // Container(
+                          //   height: 0.3,
+                          //   width: 250,
+                          //   color: white,
+                          // ),
                           SizedBox(
                             height: 10,
                           ),
                           Container(
-                            height: 0.3,
-                            width: 250,
-                            color: white,
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: listButton(
+                              'assets/icons/ideia.png',
+                              'Ideias',
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DefaultTasksPage(
+                                    listName: 'Ideias',
+                                    list: _controller.getIdeaList(),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          listButton('assets/icons/ideia.png', 'Ideias', () {}),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: listButton(
+                              'assets/icons/sol.png',
+                              'Meu dia',
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DefaultTasksPage(
+                                    listName: 'Meu dia',
+                                    list: _controller.getMyDayList(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
-                          listButton('assets/icons/sol.png', 'Meu dia', () {}),
-                          SizedBox(
-                            height: 10,
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: listButton(
+                              'assets/icons/despertador.png',
+                              'Fazer depois',
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DefaultTasksPage(
+                                    listName: 'Fazer depois',
+                                    list: _controller.getDoLaterList(),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                          listButton('assets/icons/despertador.png',
-                              'Fazer depois', () {}),
                           SizedBox(
                             height: 10,
                           ),
@@ -162,53 +213,73 @@ class _LayoutState extends State<Layout> {
                             height: 10,
                           ),
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Stack(
                               children: [
                                 tasksListsWidget(),
 
                                 //Botão para adicionar nova lista
-                                MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return NewListAlertWidget();
-                                        },
-                                      );
-                                    },
-                                    //Estilo do botão para nova lista
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 40),
-                                      width: 230,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: white,
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            '+',
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 25,
-                                              color: black,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 15,
-                                          ),
-                                          Text(
-                                            'Nova lista',
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 14,
-                                              color: black,
-                                            ),
-                                          ),
+                                Positioned(
+                                  bottom: 0,
+                                  child: Container(
+                                    height: 80,
+                                    width: 250,
+                                    padding: EdgeInsets.all(15),
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter,
+                                        colors: [
+                                          black,
+                                          black,
+                                          black,
+                                          black.withOpacity(0)
                                         ],
+                                      ),
+                                    ),
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return NewListAlertWidget();
+                                            },
+                                          );
+                                        },
+                                        //Estilo do botão para nova lista
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 40),
+                                          width: 230,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: white,
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                '+',
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 25,
+                                                  color: black,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 15,
+                                              ),
+                                              Text(
+                                                'Nova lista',
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 14,
+                                                  color: black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),

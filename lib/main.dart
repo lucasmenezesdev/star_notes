@@ -1,10 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:star_notes/config.dart';
 import 'package:star_notes/styles.dart';
 
 import 'layout.dart';
 
+late bool isMobile;
 void main() async {
   await initConfigurations();
   runApp(const MyApp());
@@ -18,10 +20,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        bool isMobile = constraints.maxWidth < 600;
+        isMobile = constraints.maxWidth < 600;
 
         return isMobile
-            ? MaterialApp(
+            ? GetMaterialApp(
                 debugShowCheckedModeBanner: false,
                 color: black,
                 title: 'Star Notes',
