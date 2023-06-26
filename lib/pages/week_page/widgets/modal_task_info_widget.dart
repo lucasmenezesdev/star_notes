@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:star_notes/controllers/lists_page_controller.dart';
+import 'package:star_notes/controllers/week_page_controller.dart';
 
 import '../../../models/task_model.dart';
 import '../../../styles.dart';
@@ -23,7 +26,7 @@ void showModalTaskInfo(
         // Adicionado SingleChildScrollView
         child: SizedBox(
           height:
-              MediaQuery.of(context).viewInsets.bottom + 300, // Altura ajustada
+              MediaQuery.of(context).viewInsets.bottom + 200, // Altura ajustada
           child: Column(
             children: [
               SizedBox(
@@ -40,21 +43,23 @@ void showModalTaskInfo(
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+              SizedBox(
                 width: MediaQuery.of(context).size.width - 50,
                 child: TextField(
-                  maxLines: 5,
                   controller: textController,
                   style: GoogleFonts.poppins(color: white),
                   cursorColor: white,
                   decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: lightPurple,
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: white, // Cor desejada para a linha de baixo
+                      ),
+                    ),
                     labelStyle: GoogleFonts.poppins(color: white, fontSize: 14),
                     hintStyle: GoogleFonts.poppins(color: white, fontSize: 14),
                     hintText: 'Ex.: Enviar documentos',

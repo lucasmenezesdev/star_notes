@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lucasmenezesdev.star_notes">
+    package="com.sincroneasy.star_notes">
    <application
-        android:label="Star Notes"
+        android:label="star_notes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
