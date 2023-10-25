@@ -159,9 +159,7 @@ class _TasksPageState extends State<TasksPage> {
 
                           _controller
                               .getTasksLists()[widget.listName]!
-                              .forEach((element) {
-                            print(element.description);
-                          });
+                              .forEach((element) {});
                           textController.clear();
                         } else
                           Get.snackbar('Campo vazio!',

@@ -8,8 +8,8 @@ import 'package:star_notes/widgets/item_task_widget.dart';
 
 import '../models/task_model.dart';
 import '../styles.dart';
-import '../widgets/alert_widget.dart';
 
+// ignore: must_be_immutable
 class DefaultTasksPage extends StatefulWidget {
   String listName;
   RxList<TaskModel> list;

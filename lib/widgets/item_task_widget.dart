@@ -15,39 +15,33 @@ Widget itemTaskWidget(
       height: 40,
       child: Row(
         children: [
-          StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {
-              return MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      controller.updateCompleted(task);
-                    });
-                  },
-                  child: Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: task.completed.value
-                            ? orange
-                            : white, // Define a cor da borda
-                        width: 2.0, // Define a largura da borda
-                      ),
-                    ),
-                    child: task.completed.value
-                        ? Icon(
-                            Icons.check,
-                            size: 16,
-                            color: orange, // Define a cor do ícone de marcação
-                          )
-                        : null,
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                controller.updateCompleted(task);
+              },
+              child: Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: task.completed.value
+                        ? orange
+                        : white, // Define a cor da borda
+                    width: 2.0, // Define a largura da borda
                   ),
                 ),
-              );
-            },
+                child: task.completed.value
+                    ? Icon(
+                        Icons.check,
+                        size: 16,
+                        color: orange, // Define a cor do ícone de marcação
+                      )
+                    : null,
+              ),
+            ),
           ),
           const SizedBox(
             width: 15,
@@ -58,7 +52,10 @@ Widget itemTaskWidget(
               onTap: () =>
                   showModalTaskInfo(context, task, periodOrList, controller),
               child: task.completed.value
-                  ? Expanded(
+                  ? SizedBox(
+                      width: isMobile
+                          ? (MediaQuery.of(context).size.width - 100)
+                          : (MediaQuery.of(context).size.width - 350),
                       child: Text(
                         task.description.value,
                         style: GoogleFonts.poppins(

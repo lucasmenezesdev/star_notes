@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:star_notes/controllers/lists_page_controller.dart';
-import 'package:star_notes/controllers/week_page_controller.dart';
 
-import '../../../models/task_model.dart';
 import '../../../styles.dart';
 
 class NewListAlertWidget extends StatefulWidget {

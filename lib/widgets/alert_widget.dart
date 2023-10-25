@@ -30,12 +30,10 @@ Widget alertWidget(String title, String subTitle, Function() onConfirm) {
     ),
     actionsAlignment: MainAxisAlignment.center,
     actions: [
-      TextButton(
-          onPressed: () {
-            Get.back();
-          },
-          child: Text('Cancelar')),
-      Expanded(child: SizedBox()),
+      TextButton(onPressed: onConfirm, child: Text('Confirmar')),
+      SizedBox(
+        width: 80,
+      ),
       ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -43,9 +41,11 @@ Widget alertWidget(String title, String subTitle, Function() onConfirm) {
           ),
           backgroundColor: orange,
         ),
-        child: Text('Confirmar',
+        child: Text('Cancelar',
             style: GoogleFonts.poppins(color: white, fontSize: 16)),
-        onPressed: onConfirm,
+        onPressed: () {
+          Get.back();
+        },
       ),
     ],
   );

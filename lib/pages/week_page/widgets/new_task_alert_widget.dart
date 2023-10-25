@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:star_notes/controllers/week_page_controller.dart';
 
-import '../../../models/task_model.dart';
 import '../../../styles.dart';
 
+// ignore: must_be_immutable
 class NewTaskAlert extends StatefulWidget {
   String period;
 

@@ -29,6 +29,49 @@
             {
               "client_id": "602193694864-noldemh6lnb61qg8ahssdgt9j2je5ibv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "602193694864-p02s7rr8kodoodkf00d2u09mavqa2f5p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sincroneasy.starNotes"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602193694864:android:58ab9f8a51d4e86dce8815",
+        "android_client_info": {
+          "package_name": "com.lucasmenezesdev.star_notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602193694864-noldemh6lnb61qg8ahssdgt9j2je5ibv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgefvy9wcLDxyM3bygeEqkDpyv_83APZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602193694864-noldemh6lnb61qg8ahssdgt9j2je5ibv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "602193694864-p02s7rr8kodoodkf00d2u09mavqa2f5p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sincroneasy.starNotes"
+              }
             }
           ]
         }
